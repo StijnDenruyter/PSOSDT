@@ -20,7 +20,7 @@ $ScriptVersion = "1.0"
 $Transcript = "$((Get-Date).ToString('yyyy-MM-dd-HHmmss'))-$ScriptName.log"
 $Null = Start-Transcript -Path (Join-Path "$env:SystemRoot\Temp" $Transcript) -ErrorAction Ignore
 
-Import-Module "W:\Modules\PSOSDT.psm1"
+Invoke-Expression (Invoke-RestMethod -Uri "https://raw.githubusercontent.com/StijnDenruyter/PSOSDT/main/Functions/PSOSDT.ps1")
 $host.UI.RawUI.WindowTitle = "PowerShell OSD Toolkit"
 Set-PSOSDTResizeOutputWindow
 
