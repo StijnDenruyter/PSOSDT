@@ -20,9 +20,49 @@
             </Display>
             <FirstLogonCommands>
                 <SynchronousCommand wcm:action="add">
+                    <CommandLine>cmd /c reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v StartShownOnUpgrade /t REG_DWORD /d 1 /f</CommandLine>
+                    <Description>Disable Start Menu auto-show at first login</Description>
+                    <Order>1</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>cmd /c reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings\Microsoft.SkyDrive.Desktop" /v Enabled /t REG_DWORD /d 0 /f</CommandLine>
+                    <Description>Disable OneDrive backup prompt at logon</Description>
+                    <Order>2</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>cmd /c reg add "HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Edge" /v HideFirstRunExperience /t REG_DWORD /d 1 /f</CommandLine>
+                    <Description>Disable the Microsoft Edge welcome screen</Description>
+                    <Order>3</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>cmd /c reg add "HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Edge" /v PasswordManagerEnabled /t REG_DWORD /d 0 /f</CommandLine>
+                    <Description>Disable Microsoft Edge password saving</Description>
+                    <Order>4</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>cmd /c reg add "HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Edge" /v SyncDisabled /t REG_DWORD /d 1 /f</CommandLine>
+                    <Description>Disable Microsoft Edge sign-in for data syncing</Description>
+                    <Order>5</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>cmd /c reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Main" /v HideFirstRunExperience /t REG_DWORD /d 1 /f</CommandLine>
+                    <Description>Disable Microsoft Edge sign-in for data syncing</Description>
+                    <Order>6</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>cmd /c powercfg -change -monitor-timeout-ac 0 & powercfg -change -monitor-timeout-dc 0 & powercfg -change -standby-timeout-ac 0 & powercfg -change -standby-timeout-dc 0</CommandLine>
+                    <Description>Disable screen turn-off and sleep</Description>
+                    <Order>7</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>cmd /c reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v ScreenSaveActive /t REG_SZ /d 0 /f</CommandLine>
+                    <Description>Disable Screensaver</Description>
+                    <Order>8</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
                     <CommandLine>PowerShell -ExecutionPolicy Bypass -File C:\OSDCloud\Scripts\PSOSDT\Start-PSOSDT.ps1</CommandLine>
                     <Description>Launch PowerShell OSD Toolkit</Description>
-                    <Order>1</Order>
+                    <Order>9</Order>
                 </SynchronousCommand>
             </FirstLogonCommands>
             <OOBE>

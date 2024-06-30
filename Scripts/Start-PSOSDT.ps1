@@ -86,6 +86,10 @@ If ($WindowsPhase -eq "OOBE") {
 }
 
 If ($WindowsPhase -eq "Windows") {
-
+	Write-Host "This is a test"
+	Start-Sleep -Seconds 60
+	Write-Host "This is a second test"
+	systeminfo
+	ipconfig /all
 	$Null = Stop-Transcript -ErrorAction Ignore
 }
