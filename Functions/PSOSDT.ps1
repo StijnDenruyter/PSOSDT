@@ -1,23 +1,4 @@
-﻿Function New-PSOSDTOSDisk
-{
-	$Disk = Get-Disk | Where-Object DiskNumber -EQ 0
-	If ($Disk.PartitionStyle -eq "RAW")
-	{
-		$Disk | Initialize-Disk -PartitionStyle GPT
-		$Disk = Get-Disk | Where-Object DiskNumber -EQ 0
-	}
-	If ($Disk.PartitionStyle -ne "GPT")
-	{
-		$Disk | Set-Disk -PartitionStyle GPT
-		$Disk = Get-Disk | Where-Object DiskNumber -EQ 0
-	}
-	$Disk | New-Partition -Size 1GB -GptType "{de94bba4-06d1-4d40-a16a-bfd50179d6ac}" -AssignDriveLetter:$false -IsActive:$false -IsHidden:$false | Format-Volume -FileSystem NTFS -Confirm:$false
-	$Disk | New-Partition -Size 350MB -GptType "{c12a7328-f81f-11d2-ba4b-00a0c93ec93b}" -AssignDriveLetter:$false -IsActive:$false -IsHidden:$true | Format-Volume -FileSystem FAT32 -Confirm:$false
-	$Disk | New-Partition -Size 128MB -GptType "{e3c9e316-0b5c-4db8-817d-f92df00215ae}" -AssignDriveLetter:$false -IsActive:$false -IsHidden:$true
-	$OSPartition = $Disk | New-Partition -UseMaximumSize -GptType "{ebd0a0a2-b9e5-4433-87c0-68b6b72699c7}" -DriveLetter C -IsActive:$false -IsHidden:$false | Format-Volume -FileSystem NTFS -DriveLetter C -ShortFileNameSupport:$true -NewFileSystemLabel "System" -Confirm:$false
-}
-
-Function Invoke-PSOSDTProcess
+﻿Function Invoke-PSOSDTProcess
 {
 	[CmdletBinding()]
 	Param (
