@@ -1,3 +1,17 @@
+Function Write-PSOSDTLogHeader
+{
+	[CmdletBinding()]
+	Param (
+		[Parameter(Mandatory = $True)]
+		[ValidateNotNullOrEmpty()]
+		[String]$Message
+	)
+	$DateConsole = Get-Date -Format "dd-MM-yyyy"
+	$TimeConsole = Get-Date -Format "HH:mm:ss"
+	$Message = "`r`n" + ('=' * 80) + "`r`n" + $DateConsole + " " + $TimeConsole + " " + $Message + "`r`n" + ('=' * 80)
+	Write-Host $Message -ForegroundColor Cyan
+}
+
 Function Invoke-PSOSDTProcess
 {
 	[CmdletBinding()]
@@ -26,20 +40,6 @@ Function Invoke-PSOSDTProcess
 	Else {
 		Write-Host "`r`nExit code: $($ExitCode)`r`n" -ForegroundColor Red
 	}
-}
-
-Function Write-PSOSDTLogHeader
-{
-	[CmdletBinding()]
-	Param (
-		[Parameter(Mandatory = $True)]
-		[ValidateNotNullOrEmpty()]
-		[String]$Message
-	)
-	$DateConsole = Get-Date -Format "dd-MM-yyyy"
-	$TimeConsole = Get-Date -Format "HH:mm:ss"
-	$Message = "`r`n" + ('=' * 80) + "`r`n" + $DateConsole + " " + $TimeConsole + " " + $Message + "`r`n" + ('=' * 80)
-	Write-Host $Message -ForegroundColor Cyan
 }
 
 Function Set-PSOSDTResizeOutputWindow
