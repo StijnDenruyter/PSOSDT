@@ -61,7 +61,7 @@ If ($WindowsPhase -eq "WinPE") {
 	}
 	Write-Host -ForegroundColor Cyan "Install Unattend.xml"
 	Invoke-WebRequest -Uri "https://raw.githubusercontent.com/StijnDenruyter/PSOSDT/main/Answer%20files/Unattend.xml" -OutFile "C:\Windows\Panther\Unattend.xml"
-	New-Item -Path "C:\OSDCloud\Scripts\PSOSDT" -ItemType Directory
+	New-Item -Path "C:\OSDCloud\Scripts\PSOSDT" -ItemType Directory | Out-Null
 	Write-Host -ForegroundColor Cyan "Copy Start-PSOSDT"
 	Copy-Item -Path "X:\OSDCloud\Config\Scripts\PSOSDT\Start-PSOSDT.ps1" -Destination "C:\OSDCloud\Scripts\PSOSDT\Start-PSOSDT.ps1"
 	Write-Host -ForegroundColor Cyan "Reboot system in 10 seconds..."
@@ -94,4 +94,5 @@ If ($WindowsPhase -eq "Windows") {
 	systeminfo
 	ipconfig /all
 	$Null = Stop-Transcript -ErrorAction Ignore
+	Copy-Item -Path (Join-Path "$env:SystemRoot\Temp" $Transcript) -Destination (Join-Path "C:\OSDCloud\Logs" $Transcript)
 }
