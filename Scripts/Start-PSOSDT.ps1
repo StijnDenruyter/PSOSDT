@@ -23,7 +23,6 @@ $Null = Start-Transcript -Path (Join-Path "$env:SystemRoot\Temp" $Transcript) -E
 Invoke-Expression (Invoke-RestMethod -Uri "https://raw.githubusercontent.com/StijnDenruyter/PSOSDT/main/Functions/PSOSDT.ps1")
 $host.UI.RawUI.WindowTitle = "PowerShell OSD Toolkit"
 Set-PSOSDTResizeOutputWindow
-Hide-StartNetWindow
 
 If ($env:SystemDrive -eq "X:") {
 	$WindowsPhase = "WinPE"
@@ -53,6 +52,7 @@ Write-Host -ForegroundColor Green "[+] Transport Layer Security (TLS) 1.2"
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 
 If ($WindowsPhase -eq "WinPE") {
+	Hide-StartNetWindow
 	Write-Host -ForegroundColor Cyan "Start OSDCloud"
 	If (Test-Connection -ComputerName osdcloud.apps.denruyter.net -Count 1 -Quiet) {
 		Start-OSDCloud -ImageFileUrl "http://osdcloud.apps.denruyter.net/images/Win11_Ent_23H2_EN.wim" -Firmware -ZTI -OSImageIndex 3
