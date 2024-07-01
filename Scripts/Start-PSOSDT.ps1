@@ -68,6 +68,7 @@ If ($WindowsPhase -eq "WinPE") {
 	Start-Sleep -Seconds 10
 	Restart-Computer -Force
 	$Null = Stop-Transcript -ErrorAction Ignore
+	Copy-Item -Path (Join-Path "$env:SystemRoot\Temp" $Transcript) -Destination (Join-Path "C:\OSDCloud\Logs" $Transcript)
 }
 
 If ($WindowsPhase -eq "Specialize") {
@@ -89,6 +90,7 @@ If ($WindowsPhase -eq "Windows") {
 	Write-Host "This is a test"
 	Start-Sleep -Seconds 60
 	Write-Host "This is a second test"
+	Start-Sleep -Seconds 60
 	systeminfo
 	ipconfig /all
 	$Null = Stop-Transcript -ErrorAction Ignore
