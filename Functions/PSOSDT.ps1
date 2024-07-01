@@ -42,7 +42,6 @@ Function Write-PSOSDTLogHeader
 	Write-Host $Message -ForegroundColor Cyan
 }
 
-
 Function Set-PSOSDTResizeOutputWindow
 {
 	Add-Type -AssemblyName System.Windows.Forms
@@ -91,4 +90,9 @@ Function Set-PSOSDTResizeOutputWindow
 	[Win32]::MoveWindow($MainWindowHandle, $targetX, $targetY, $targetWidth, $targetHeight, $true) | Out-Null
 	$Host.UI.RawUI.BackgroundColor = "Black"
 	Clear-Host
+}
+
+Function Hide-StartNetWindow
+{
+	Start-Process -FilePath "X:\OSDCloud\Config\Scripts\PSOSDT\NirCmd.exe" -ArgumentList "win min process cmd.exe" -NoNewWindow
 }

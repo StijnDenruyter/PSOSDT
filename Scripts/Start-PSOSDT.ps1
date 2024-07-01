@@ -23,6 +23,7 @@ $Null = Start-Transcript -Path (Join-Path "$env:SystemRoot\Temp" $Transcript) -E
 Invoke-Expression (Invoke-RestMethod -Uri "https://raw.githubusercontent.com/StijnDenruyter/PSOSDT/main/Functions/PSOSDT.ps1")
 $host.UI.RawUI.WindowTitle = "PowerShell OSD Toolkit"
 Set-PSOSDTResizeOutputWindow
+Hide-StartNetWindow
 
 If ($env:SystemDrive -eq "X:") {
 	$WindowsPhase = "WinPE"
