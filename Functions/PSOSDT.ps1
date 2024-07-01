@@ -1,4 +1,4 @@
-﻿Function Invoke-PSOSDTProcess
+F﻿unction Invoke-PSOSDTProcess
 {
 	[CmdletBinding()]
 	Param (
