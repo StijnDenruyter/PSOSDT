@@ -88,10 +88,34 @@ If ($WindowsPhase -eq "OOBE") {
 }
 
 If ($WindowsPhase -eq "Windows") {
-	Write-Host "This is a test"
-	Start-Sleep -Seconds 60
-	Write-Host "This is a second test"
-	Start-Sleep -Seconds 60
+	Write-Host "1"
+	Start-Sleep -Seconds 30
+	Write-Host "2"
+	Start-Sleep -Seconds 30
+	Write-Host "3"
+	Start-Sleep -Seconds 30
+	Write-Host "4"
+	Start-Sleep -Seconds 30
+	Write-Host "5"
+	Start-Sleep -Seconds 30
+	Write-Host "6"
+	Start-Sleep -Seconds 30
+	Write-Host "7"
+	Start-Sleep -Seconds 30
+	Write-Host "8"
+	Start-Sleep -Seconds 30
+	Write-Host "9"
+	Start-Sleep -Seconds 30
+	Write-Host "10"
+	Start-Sleep -Seconds 30
+	Write-Host "11"
+	Start-Sleep -Seconds 30
+	Write-Host "12"
+	Start-Sleep -Seconds 30
+	Write-Host "13"
+	Start-Sleep -Seconds 30
+	Write-Host "14"
+	Start-Sleep -Seconds 30
 	systeminfo
 	ipconfig /all
 	$Null = Stop-Transcript -ErrorAction Ignore
