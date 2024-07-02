@@ -94,5 +94,11 @@ Function Set-PSOSDTResizeOutputWindow
 
 Function Hide-StartNetWindow
 {
-	Start-Process -FilePath "X:\OSDCloud\Config\Scripts\PSOSDT\NirCmd.exe" -ArgumentList "win min process cmd.exe" -NoNewWindow
+	[CmdletBinding()]
+	Param (
+		[Parameter(Mandatory = $True)]
+		[ValidateNotNullOrEmpty()]
+		[String]$NirCmdPath
+	)
+	Start-Process -FilePath $NirCmdPath -ArgumentList "win min process cmd.exe" -NoNewWindow
 }
