@@ -89,7 +89,7 @@ If ($WindowsPhase -eq "OOBE") {
 
 If ($WindowsPhase -eq "Windows") {
 	Write-Host "Initializing..."
-	Start-Sleep -Seconds 60
+	Start-Sleep -Seconds 80
 	Write-Host "1"
 	Start-Sleep -Seconds 5
 	Write-Host "2"
