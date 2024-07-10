@@ -52,7 +52,7 @@ Write-Host -ForegroundColor Green "[+] Transport Layer Security (TLS) 1.2"
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 
 If ($WindowsPhase -eq "WinPE") {
-	Hide-StartNetWindow
+	Hide-StartNetWindow -NirCmdPath "X:\OSDCloud\Config\Scripts\PSOSDT\nircmd.exe" 
 	Write-Host -ForegroundColor Cyan "Start OSDCloud"
 	If (Test-Connection -ComputerName osdcloud.apps.denruyter.net -Count 1 -Quiet) {
 		Start-OSDCloud -ImageFileUrl "http://osdcloud.apps.denruyter.net/images/Win11_Ent_23H2_EN.wim" -Firmware -ZTI -OSImageIndex 3
