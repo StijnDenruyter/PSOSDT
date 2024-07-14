@@ -116,6 +116,8 @@ If ($WindowsPhase -eq "Windows") {
 	Start-Sleep -Seconds 5
 	systeminfo
 	ipconfig /all
+	Start-BitsTransfer -Source "https://github.com/StijnDenruyter/PSOSDT/raw/main/PSAppDeployToolkit/PSADT_v3.10.1.zip" -Destination "C:\PSADT.zip"
+	Expand-Archive -Path "C:\PSADT.zip" -DestinationPath "C:\PSADT"
 	$Null = Stop-Transcript -ErrorAction Ignore
 	Copy-Item -Path (Join-Path "$env:SystemRoot\Temp" $Transcript) -Destination (Join-Path "C:\OSDCloud\Logs" $Transcript)
 }
