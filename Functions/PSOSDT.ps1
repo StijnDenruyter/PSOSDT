@@ -1,47 +1,3 @@
-Function Invoke-PSOSDTProcess
-{
-	[CmdletBinding()]
-	Param (
-		[Parameter(Mandatory = $True)]
-		[ValidateNotNullOrEmpty()]
-		[String]$FilePath,
-		[Parameter(Mandatory = $False)]
-		[ValidateNotNullOrEmpty()]
-		[String]$WorkingDir,
-		[Parameter(Mandatory = $True)]
-		[ValidateNotNullOrEmpty()]
-		[String]$Arguments
-	)
-	If ($WorkingDir -ne "")
-	{
-		$ExitCode = (Start-Process -FilePath $FilePath -ArgumentList $Arguments -WorkingDirectory $WorkingDir -NoNewWindow -Wait -PassThru).ExitCode
-	}
-	else
-	{
-		$ExitCode = (Start-Process -FilePath $FilePath -ArgumentList $Arguments -NoNewWindow -Wait -PassThru).ExitCode
-	}
-	If ($ExitCode -eq 0) {
-		Write-Host "`r`nExit code: $($ExitCode)`r`n" -ForegroundColor Green
-	}
-	Else {
-		Write-Host "`r`nExit code: $($ExitCode)`r`n" -ForegroundColor Red
-	}
-}
-
-Function Write-PSOSDTLogHeader
-{
-	[CmdletBinding()]
-	Param (
-		[Parameter(Mandatory = $True)]
-		[ValidateNotNullOrEmpty()]
-		[String]$Message
-	)
-	$DateConsole = Get-Date -Format "dd-MM-yyyy"
-	$TimeConsole = Get-Date -Format "HH:mm:ss"
-	$Message = "`r`n" + ('=' * 80) + "`r`n" + $DateConsole + " " + $TimeConsole + " " + $Message + "`r`n" + ('=' * 80)
-	Write-Host $Message -ForegroundColor Cyan
-}
-
 Function Set-PSOSDTResizeOutputWindow
 {
 	Add-Type -AssemblyName System.Windows.Forms
@@ -82,8 +38,8 @@ Function Set-PSOSDTResizeOutputWindow
 	$screenWidth = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds.Width
 	$screenHeight = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds.Height
 
-	$targetWidth = 833
-	$targetHeight = 549
+	$targetWidth = 943
+	$targetHeight = 695
 	$targetX = (($screenWidth / 2) - ($targetWidth / 2))
 	$targetY = (($screenHeight / 2) - ($targetHeight / 2))
 	
